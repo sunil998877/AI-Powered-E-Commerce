@@ -288,3 +288,4 @@ Here are 5 representative queries from [`examples/sample_questions.md`](file:///
 ## 9. Loom Video Recording Script
 
 A complete, structured walkthrough script is provided in [`LOOM_SCRIPT.md`](file:///c:/Users/skp66/.gemini/antigravity-ide/scratch/ecommerce-ai-knowledge-graph/LOOM_SCRIPT.md) to facilitate recording the required Loom presentation.
+# AI-Powered-E-Commerce
