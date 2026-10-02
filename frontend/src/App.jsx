@@ -138,12 +138,9 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-hidden font-sans">
-      {/* Sidebar */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Top Header */}
         <Header
           isDark={isDark}
           setIsDark={setIsDark}
@@ -153,11 +150,9 @@ export default function App() {
           isRefreshing={isRefreshing}
         />
 
-        {/* Scrollable Content View */}
         <main className="flex-1 overflow-y-auto p-6 space-y-6">
           {activeTab === 'ask' && (
             <div className="max-w-5xl mx-auto space-y-6">
-              {/* Question Input */}
               <QuestionInput
                 question={question}
                 setQuestion={setQuestion}
@@ -167,23 +162,18 @@ export default function App() {
                 error={error}
               />
 
-              {/* Sample Questions */}
               <SampleQuestions onSelectQuestion={handleSelectSample} />
 
-              {/* Results Section */}
               {queryResult && (
                 <div className="space-y-6">
-                  {/* AI Answer Card */}
                   <AnswerCard
                     answer={queryResult.answer}
                     grounded={queryResult.grounded}
                     resultCount={queryResult.result_count}
                   />
 
-                  {/* Generated Cypher Card */}
                   <CypherCard cypher={queryResult.cypher} />
 
-                  {/* Retrieved Graph Data Card */}
                   <ResultsTable results={queryResult.results} />
                 </div>
               )}

@@ -50,7 +50,6 @@ export default function CypherCard({ cypher }) {
         </div>
       </div>
 
-      {/* Code Editor Style View */}
       <div className="overflow-hidden rounded-xl border border-slate-800 bg-navy-950 shadow-inner">
         <div className="flex items-center justify-between border-b border-slate-800/80 bg-slate-900/80 px-4 py-2 text-xs text-slate-400">
           <div className="flex items-center gap-1.5">

@@ -119,7 +119,6 @@ export default function QuestionInput({
         </div>
       </form>
 
-      {/* Progress Stepper during loading */}
       {effectiveLoading && (
         <div className="mt-5 rounded-xl border border-indigo-100 bg-indigo-50/50 p-4 dark:border-indigo-900/40 dark:bg-indigo-950/20">
           <div className="space-y-2">
@@ -152,7 +151,6 @@ export default function QuestionInput({
         </div>
       )}
 
-      {/* Error banner */}
       {error && (
         <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-700 dark:border-rose-900 dark:bg-rose-950/40 dark:text-rose-300">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />

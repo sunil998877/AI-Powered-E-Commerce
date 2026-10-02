@@ -68,7 +68,6 @@ export default function EntitiesView() {
         </button>
       </div>
 
-      {/* Tabs */}
       <div className="mb-4 flex flex-wrap gap-2 border-b border-slate-200 pb-3 dark:border-slate-800">
         {entityTypes.map((type) => {
           const count = entities[type.key]?.length ?? 0;
@@ -101,7 +100,6 @@ export default function EntitiesView() {
         })}
       </div>
 
-      {/* Search Bar */}
       <div className="mb-4 flex items-center justify-between gap-4">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3.5 top-2.5 h-4 w-4 text-slate-400" />
@@ -118,7 +116,6 @@ export default function EntitiesView() {
         </span>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
         {loading ? (
           <div className="p-8 text-center text-xs text-slate-500">

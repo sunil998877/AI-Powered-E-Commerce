@@ -151,7 +151,6 @@ export default function ApiTestingView() {
                 </div>
               </div>
 
-              {/* Response Code Block */}
               {res && (
                 <div className="mt-3 overflow-hidden rounded-lg border border-slate-800 bg-navy-950 p-3 text-xs font-mono shadow-inner">
                   <pre className="text-emerald-400/90 whitespace-pre-wrap max-h-48 overflow-y-auto">

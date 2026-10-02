@@ -25,7 +25,6 @@ export default function Sidebar({ activeTab, setActiveTab }) {
 
   return (
     <aside className="flex w-64 flex-col justify-between border-r border-slate-200 bg-navy-950 p-4 text-slate-300 dark:border-slate-800">
-      {/* Top Branding & Navigation */}
       <div>
         <div className="mb-6 flex items-center gap-2.5 px-3 py-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-600 font-bold text-white shadow-sm">
@@ -71,7 +70,6 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         </nav>
       </div>
 
-      {/* Bottom Tech Stack Section */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5 text-xs">
         <div className="mb-2 flex items-center gap-2 font-semibold text-slate-300">
           <Layers className="h-3.5 w-3.5 text-blue-400" />

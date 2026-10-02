@@ -19,7 +19,6 @@ export default function AnswerCard({ answer, resultCount }) {
           </div>
         </div>
 
-        {/* Grounding badge */}
         {!isUnavailable ? (
           <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-800/80 dark:bg-emerald-950/50 dark:text-emerald-300">
             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />

@@ -55,7 +55,6 @@ export default function BananaVerification() {
         </button>
       </div>
 
-      {/* Verification Banner */}
       {data.verified ? (
         <div className="mb-6 flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 text-emerald-800 dark:border-emerald-800/70 dark:bg-emerald-950/40 dark:text-emerald-300">
           <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
@@ -72,12 +71,11 @@ export default function BananaVerification() {
         </div>
       )}
 
-      {/* Cypher Verification Query Box */}
       <div className="mb-6 rounded-xl border border-slate-800 bg-navy-950 p-4 text-xs font-mono text-slate-300 shadow-inner">
         <div className="mb-2 flex items-center justify-between text-slate-400">
           <div className="flex items-center gap-1.5 font-semibold text-slate-300">
             <Terminal className="h-3.5 w-3.5 text-yellow-400" />
-            <span>Cypher Verification Query (Requirement 8)</span>
+            <span>Cypher Verification Query</span>
           </div>
           <span className="text-[11px] text-emerald-400">PASS (count = 5)</span>
         </div>
@@ -88,7 +86,6 @@ RETURN count(n) AS banana_count`}
         </pre>
       </div>
 
-      {/* Dynamic Data Table */}
       <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
         <div className="border-b border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-semibold text-slate-700 dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-200 flex items-center justify-between">
           <span>Retrieved Banana Keyword Nodes</span>

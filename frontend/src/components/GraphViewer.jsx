@@ -137,7 +137,6 @@ export default function GraphViewer({ graphData, isLoading }) {
     };
   }, [graphData]);
 
-  // Canvas drawing routine
   const draw = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -330,7 +329,6 @@ export default function GraphViewer({ graphData, isLoading }) {
         isFullscreen ? 'fixed inset-4 z-50 overflow-hidden' : ''
       }`}
     >
-      {/* Header & Controls */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <div>
           <h2 className="text-base font-semibold text-slate-900 dark:text-white flex items-center gap-2">
@@ -344,7 +342,6 @@ export default function GraphViewer({ graphData, isLoading }) {
           </p>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
           <button
             onClick={() => handleZoom(1.2)}
@@ -377,7 +374,6 @@ export default function GraphViewer({ graphData, isLoading }) {
         </div>
       </div>
 
-      {/* Legend & Filter Tabs */}
       <div className="flex flex-wrap items-center gap-2 mb-3 pb-3 border-b border-slate-100 dark:border-slate-800">
         <span className="text-xs font-semibold text-slate-400 flex items-center gap-1">
           <Filter className="w-3 h-3" /> Legend:
@@ -411,7 +407,6 @@ export default function GraphViewer({ graphData, isLoading }) {
         )}
       </div>
 
-      {/* Canvas Area */}
       <div className="relative rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/60 overflow-hidden">
         {isLoading && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
@@ -431,7 +426,6 @@ export default function GraphViewer({ graphData, isLoading }) {
           className="w-full h-[500px] cursor-grab active:cursor-grabbing block"
         />
 
-        {/* Selected Node Details Tooltip */}
         {selectedNode && (
           <div className="absolute bottom-3 left-3 max-w-sm p-3 rounded-xl bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-700 shadow-xl backdrop-blur-md text-xs z-20">
             <div className="flex items-center justify-between gap-3 mb-1.5">

@@ -55,9 +55,7 @@ export default function Header({
         </div>
       </div>
 
-      {/* Right controls: Service badges & Theme toggle */}
       <div className="flex items-center gap-3">
-        {/* Neo4j Status Badge */}
         <div
           className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium ${
             isNeo4jUp
@@ -74,7 +72,6 @@ export default function Header({
           <span>{isNeo4jUp ? 'Neo4j Connected' : 'Neo4j Offline'}</span>
         </div>
 
-        {/* API Status Badge */}
         <div
           className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium ${
             isApiUp
@@ -91,7 +88,6 @@ export default function Header({
           <span>{isApiUp ? 'API Online' : 'API Offline'}</span>
         </div>
 
-        {/* Refresh button */}
         <button
           onClick={handleRefresh}
           disabled={isBusy}
@@ -101,7 +97,6 @@ export default function Header({
           <RefreshCw className={`h-4 w-4 ${isBusy ? 'animate-spin text-indigo-600' : ''}`} />
         </button>
 
-        {/* Theme toggle */}
         <button
           onClick={handleToggleDark}
           title={dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}

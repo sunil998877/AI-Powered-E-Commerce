@@ -4,7 +4,6 @@ import { Layers, ShieldCheck, Database, Bot, ArrowRight, Video, Sparkles } from 
 export default function AboutView() {
   return (
     <div className="space-y-6">
-      {/* Architecture Card */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <h2 className="text-base font-bold text-slate-900 dark:text-white sm:text-lg mb-2">
           Project Architecture & Pipeline
@@ -13,7 +12,6 @@ export default function AboutView() {
           How natural language questions are converted to Cypher, executed on Neo4j, and returned with grounded answers.
         </p>
 
-        {/* Pipeline Diagram */}
         <div className="grid gap-4 sm:grid-cols-5 text-center">
           <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-4 dark:border-blue-900/40 dark:bg-blue-950/20">
             <div className="mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white text-xs font-bold">
@@ -57,7 +55,6 @@ export default function AboutView() {
         </div>
       </div>
 
-      {/* Loom Demo Guide */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="flex items-center gap-2.5 mb-4">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10 text-red-600 dark:bg-red-500/20 dark:text-red-400">
