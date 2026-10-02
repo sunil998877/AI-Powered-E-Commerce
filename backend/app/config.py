@@ -2,12 +2,10 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Find base directories
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = BACKEND_DIR.parent
 DATA_FILE = ROOT_DIR / "data" / "ecommerce.json"
 
-# Load backend/.env if exists, otherwise workspace .env
 env_path = BACKEND_DIR / ".env"
 if env_path.exists():
     load_dotenv(dotenv_path=env_path)

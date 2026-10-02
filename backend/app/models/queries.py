@@ -1,5 +1,3 @@
-# Cypher queries representing data models and operations
-
 STATS_QUERY = """
 MATCH (p:Product) WITH count(p) AS products
 MATCH (b:Brand) WITH products, count(b) AS brands

@@ -29,7 +29,6 @@ export default function GraphViewer({ graphData, isLoading }) {
   const [selectedNode, setSelectedNode] = useState(null);
   const [filterType, setFilterType] = useState('ALL');
 
-  // Graph state for physics & rendering
   const nodesRef = useRef([]);
   const linksRef = useRef([]);
   const transformRef = useRef({ x: 0, y: 0, k: 1 });
@@ -38,14 +37,12 @@ export default function GraphViewer({ graphData, isLoading }) {
   const lastMousePosRef = useRef({ x: 0, y: 0 });
   const animFrameIdRef = useRef(null);
 
-  // Initialize and run force simulation
   useEffect(() => {
     if (!graphData || !graphData.nodes || graphData.nodes.length === 0) return;
 
     const width = containerRef.current ? containerRef.current.clientWidth : 800;
     const height = 550;
 
-    // Create node objects with physics positions
     const initialNodes = graphData.nodes.map((n, i) => {
       const angle = (i / graphData.nodes.length) * 2 * Math.PI;
       const radius = 180 + Math.random() * 120;
@@ -73,18 +70,15 @@ export default function GraphViewer({ graphData, isLoading }) {
     nodesRef.current = initialNodes;
     linksRef.current = initialLinks;
 
-    // Center view
     transformRef.current = { x: 0, y: 0, k: 0.9 };
 
-    // Simple spring-electrical physics simulation
     let iteration = 0;
     const simulate = () => {
       iteration++;
       const nodes = nodesRef.current;
       const links = linksRef.current;
-      const k = 90; // spring length
+      const k = 90;
 
-      // 1. Repulsion between all nodes
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[j].x - nodes[i].x;
@@ -102,7 +96,6 @@ export default function GraphViewer({ graphData, isLoading }) {
         }
       }
 
-      // 2. Attraction along edges
       for (const link of links) {
         const s = link.sourceNode;
         const t = link.targetNode;
@@ -118,7 +111,6 @@ export default function GraphViewer({ graphData, isLoading }) {
         t.vy -= fy;
       }
 
-      // 3. Center gravity & damping
       const cx = width / 2;
       const cy = height / 2;
       for (const node of nodes) {
@@ -162,7 +154,6 @@ export default function GraphViewer({ graphData, isLoading }) {
     const nodes = nodesRef.current;
     const links = linksRef.current;
 
-    // Draw Links
     for (const link of links) {
       const s = link.sourceNode;
       const t = link.targetNode;
@@ -183,7 +174,6 @@ export default function GraphViewer({ graphData, isLoading }) {
       ctx.lineWidth = 1.2;
       ctx.stroke();
 
-      // Draw arrow
       const angle = Math.atan2(t.y - s.y, t.x - s.x);
       const arrowLength = 7;
       const arrowX = t.x - Math.cos(angle) * (t.radius + 3);
@@ -202,7 +192,6 @@ export default function GraphViewer({ graphData, isLoading }) {
       ctx.fillStyle = '#64748b';
       ctx.fill();
 
-      // Link label (relationship type)
       const midX = (s.x + t.x) / 2;
       const midY = (s.y + t.y) / 2;
       ctx.font = '9px Inter, sans-serif';
@@ -211,7 +200,6 @@ export default function GraphViewer({ graphData, isLoading }) {
       ctx.fillText(link.type || '', midX, midY - 3);
     }
 
-    // Draw Nodes
     for (const node of nodes) {
       if (filterType !== 'ALL' && node.type !== filterType) {
         continue;
@@ -220,7 +208,6 @@ export default function GraphViewer({ graphData, isLoading }) {
       const style = NODE_COLORS[node.type] || NODE_COLORS.Other;
       const isSelected = selectedNode && selectedNode.id === node.id;
 
-      // Glow effect if selected or banana
       if (isSelected || (node.type === 'Keyword' && node.label === 'banana')) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius + 6, 0, Math.PI * 2);
@@ -228,7 +215,6 @@ export default function GraphViewer({ graphData, isLoading }) {
         ctx.fill();
       }
 
-      // Node Circle
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
       ctx.fillStyle = style.bg;
@@ -237,7 +223,6 @@ export default function GraphViewer({ graphData, isLoading }) {
       ctx.strokeStyle = isSelected ? '#ffffff' : style.border;
       ctx.stroke();
 
-      // Node Icon / Text
       ctx.fillStyle = style.text;
       ctx.font = '10px Inter, sans-serif';
       ctx.textAlign = 'center';
@@ -250,7 +235,6 @@ export default function GraphViewer({ graphData, isLoading }) {
         ctx.fillText(shortName, node.x, node.y);
       }
 
-      // Outer caption
       ctx.font = '9px Inter, sans-serif';
       ctx.fillStyle = '#475569';
       ctx.fillText(node.label || node.id, node.x, node.y + node.radius + 11);
@@ -259,17 +243,14 @@ export default function GraphViewer({ graphData, isLoading }) {
     ctx.restore();
   };
 
-  // Mouse handlers for Pan and Drag
   const handleMouseDown = (e) => {
     const rect = canvasRef.current.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    // Convert mouse coordinates into world coordinates
     const worldX = (mouseX - transformRef.current.x) / transformRef.current.k;
     const worldY = (mouseY - transformRef.current.y) / transformRef.current.k;
 
-    // Check if clicked a node
     let clickedNode = null;
     for (const node of nodesRef.current) {
       const dx = node.x - worldX;

@@ -5,7 +5,6 @@ from app.controllers.banana_controller import router as banana_router
 from app.controllers.graph_controller import router as graph_router
 from app.controllers.health_controller import router as health_router
 
-# Unified MVC Controller Router
 api_router = APIRouter()
 
 api_router.include_router(health_router)

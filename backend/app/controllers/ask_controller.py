@@ -7,15 +7,11 @@ from app.services.validator_service import CypherValidationError
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(tags=["Ask AI Pipeline"])
+router = APIRouter(tags=["Ask"])
 
 
 @router.post("/api/ask", response_model=AskResponseView)
 def ask_question_controller(req: AskRequestView):
-    """
-    MVC Controller: Accepts user question, invokes LLM to generate Cypher,
-    executes against Neo4j, and returns grounded answer view.
-    """
     question = req.question.strip()
     if not question:
         raise HTTPException(
@@ -24,16 +20,10 @@ def ask_question_controller(req: AskRequestView):
         )
 
     try:
-        # Step 1: Stage 1 LLM Service converts Natural Language to Cypher
         cypher = LLMService.generate_cypher_with_llm(question)
-
-        # Step 2: Retrieval Service validates and executes query against Neo4j
         results = GraphRetrieverService.execute_cypher(cypher)
-
-        # Step 3: Stage 2 LLM Service synthesizes grounded answer
         answer = LLMService.generate_grounded_answer(question, results)
 
-        # Step 4: Return View Schema
         return AskResponseView(
             question=question,
             cypher=cypher,

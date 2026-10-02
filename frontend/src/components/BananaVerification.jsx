@@ -12,7 +12,6 @@ export default function BananaVerification() {
     setError(null);
     const res = await api.getBananaNodes();
     if (res.success && res.data) {
-      // res.data can be array or { count, verified, nodes }
       const nodes = Array.isArray(res.data) ? res.data : res.data.nodes || [];
       setData({
         count: nodes.length,

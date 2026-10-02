@@ -18,7 +18,6 @@ export default function ResultsTable({ results }) {
     );
   }
 
-  // Extract columns dynamically from the first record
   const columns = Object.keys(results[0]);
 
   return (

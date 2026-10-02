@@ -3,7 +3,6 @@ import logging
 import sys
 from pathlib import Path
 
-# Add backend directory to sys.path so it works regardless of invocation directory
 current_file = Path(__file__).resolve()
 backend_dir = current_file.parent.parent.parent
 if str(backend_dir) not in sys.path:
@@ -18,7 +17,6 @@ logger = logging.getLogger(__name__)
 
 
 def create_constraints_and_indexes(session):
-    logger.info("Ensuring uniqueness constraints and indexes...")
     constraints = [
         "CREATE CONSTRAINT brand_id_unique IF NOT EXISTS FOR (b:Brand) REQUIRE b.id IS UNIQUE",
         "CREATE CONSTRAINT category_id_unique IF NOT EXISTS FOR (c:Category) REQUIRE c.id IS UNIQUE",
@@ -32,7 +30,7 @@ def create_constraints_and_indexes(session):
         try:
             session.run(c)
         except Exception as e:
-            logger.warning(f"Constraint creation notice: {e}")
+            logger.warning(f"Constraint notice: {e}")
 
 
 def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
@@ -40,7 +38,7 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
         data_path = settings.DATA_PATH
 
     if not data_path.exists():
-        raise FileNotFoundError(f"Dataset file not found at {data_path}")
+        raise FileNotFoundError(f"Dataset not found at {data_path}")
 
     with open(data_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -49,13 +47,10 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
 
     with driver.session() as session:
         if clear_first:
-            logger.info("Clearing existing graph data for clean deterministic state...")
             session.run("MATCH (n) DETACH DELETE n")
 
         create_constraints_and_indexes(session)
 
-        # 1. Load Brands
-        logger.info(f"Loading {len(data.get('brands', []))} Brands...")
         for brand in data.get("brands", []):
             session.run(
                 """
@@ -66,8 +61,6 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
                 name=brand["name"],
             )
 
-        # 2. Load Categories
-        logger.info(f"Loading {len(data.get('categories', []))} Categories...")
         for category in data.get("categories", []):
             session.run(
                 """
@@ -78,8 +71,6 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
                 name=category["name"],
             )
 
-        # 3. Load Vendors
-        logger.info(f"Loading {len(data.get('vendors', []))} Vendors...")
         for vendor in data.get("vendors", []):
             session.run(
                 """
@@ -91,9 +82,7 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
                 location=vendor["location"],
             )
 
-        # 4. Load Products and connect Brand, Category, Vendor
         products = data.get("products", [])
-        logger.info(f"Loading {len(products)} Products and relationships...")
         for prod in products:
             session.run(
                 """
@@ -118,8 +107,6 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
                 vendor_id=prod["vendor_id"],
             )
 
-        # 5. Load Customers
-        logger.info(f"Loading {len(data.get('customers', []))} Customers...")
         for cust in data.get("customers", []):
             session.run(
                 """
@@ -131,10 +118,7 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
                 email=cust["email"],
             )
 
-        # 6. Load Orders and relationships (with quantity)
-        orders = data.get("orders", [])
-        logger.info(f"Loading {len(orders)} Orders and relationships...")
-        for order in orders:
+        for order in data.get("orders", []):
             session.run(
                 """
                 MERGE (o:Order {id: $id})
@@ -166,7 +150,6 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
                     quantity=it.get("quantity", 1),
                 )
 
-        # 7. MANDATORY BANANA REQUIREMENT
         banana_keywords = [
             {"id": "BANANA_001", "value": "banana"},
             {"id": "BANANA_002", "value": "banana"},
@@ -174,7 +157,6 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
             {"id": "BANANA_004", "value": "banana"},
             {"id": "BANANA_005", "value": "banana"},
         ]
-        logger.info("Loading exactly 5 Keyword nodes for mandatory banana requirement...")
         for kw in banana_keywords:
             session.run(
                 """
@@ -185,22 +167,19 @@ def load_ecommerce_dataset(data_path: Path = None, clear_first: bool = True):
                 value=kw["value"],
             )
 
-        # 8. Verify inserted graph counts
         stats_rec = session.run(STATS_QUERY).single()
         stats = stats_rec.get("stats") if stats_rec else {}
-        logger.info(f"Knowledge Graph verification statistics: {stats}")
+        logger.info(f"Loaded graph stats: {stats}")
 
         banana_rec = session.run(BANANA_COUNT_QUERY).single()
         banana_count = banana_rec.get("banana_count") if banana_rec else 0
-        logger.info(f"Banana verification count: {banana_count} (Expected: 5)")
 
         if banana_count != 5:
-            raise ValueError(f"CRITICAL: Expected exactly 5 banana keywords, found {banana_count}!")
+            raise ValueError(f"Expected 5 banana keywords, found {banana_count}")
 
         if stats.get("products") != 20:
-            raise ValueError(f"CRITICAL: Expected exactly 20 products, found {stats.get('products')}!")
+            raise ValueError(f"Expected 20 products, found {stats.get('products')}")
 
-        logger.info("Knowledge Graph dataset loaded and verified successfully!")
         return stats
 
 

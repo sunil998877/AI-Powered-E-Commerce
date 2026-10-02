@@ -6,14 +6,11 @@ from app.services.retrieval_service import GraphRetrieverService
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(tags=["Graph & Entities"])
+router = APIRouter(tags=["Graph"])
 
 
 @router.get("/api/graph")
 def get_graph_data_controller():
-    """
-    MVC Controller: Formats and returns graph nodes and links for frontend visualization.
-    """
     try:
         driver = Neo4jConnection.get_driver()
         nodes = []
@@ -21,7 +18,6 @@ def get_graph_data_controller():
         node_id_map = {}
 
         with driver.session() as session:
-            # Query nodes
             nodes_res = session.run(NODES_QUERY)
             for r in nodes_res:
                 props = dict(r["props"])
@@ -29,18 +25,16 @@ def get_graph_data_controller():
                 biz_id = props.get("id") or str(r["eid"])
                 display_label = props.get("name") or props.get("value") or biz_id
 
-                node_obj = {
+                nodes.append({
                     "id": biz_id,
                     "label": display_label,
                     "type": node_type,
                     "properties": props,
-                }
-                nodes.append(node_obj)
+                })
                 node_id_map[str(r["eid"])] = biz_id
                 if "id" in props:
                     node_id_map[str(props["id"])] = biz_id
 
-            # Query relationships
             edges_res = session.run(EDGES_QUERY)
             for r in edges_res:
                 src = r["source_id"] or node_id_map.get(str(r["source_eid"]), str(r["source_eid"]))
@@ -57,24 +51,21 @@ def get_graph_data_controller():
             "links": links,
         }
     except Exception as e:
-        logger.error(f"Failed to fetch graph visualization data: {e}")
+        logger.error(f"Failed to fetch graph data: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/api/entities")
 def get_entities_controller():
-    """
-    MVC Controller: Groups and returns all entities by category for tabular inspection.
-    """
     try:
         results = GraphRetrieverService.execute_cypher(ALL_ENTITIES_QUERY)
         grouped = {}
-        for r in results:
-            etype = r.get("type", "Other")
-            props = r.get("props", {})
-            if etype not in grouped:
-                grouped[etype] = []
-            grouped[etype].append(props)
+        for row in results:
+            labels = row.get("labels", [])
+            label = labels[0] if labels else "Other"
+            if label not in grouped:
+                grouped[label] = []
+            grouped[label].append(row)
         return grouped
     except Exception as e:
         logger.error(f"Failed to fetch entities: {e}")

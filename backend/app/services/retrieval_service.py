@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 
 
 def serialize_neo4j_value(val: Any) -> Any:
-    """Convert Neo4j objects to JSON-serializable Python data."""
     if isinstance(val, Node):
         props = dict(val.items())
         return {
@@ -40,10 +39,6 @@ def serialize_neo4j_value(val: Any) -> Any:
 class GraphRetrieverService:
     @classmethod
     def execute_cypher(cls, cypher: str) -> List[Dict[str, Any]]:
-        """
-        Validates and executes a read-only Cypher query against Neo4j,
-        returning JSON-serializable structured records.
-        """
         is_valid, cleaned_cypher, error_msg = validate_cypher(cypher)
         if not is_valid:
             raise CypherValidationError(error_msg)

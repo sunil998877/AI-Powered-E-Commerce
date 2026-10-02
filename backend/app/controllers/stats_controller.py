@@ -10,10 +10,7 @@ router = APIRouter(tags=["Statistics"])
 
 
 @router.get("/api/stats", response_model=StatsResponseView)
-def get_graph_stats_controller():
-    """
-    MVC Controller: Retrieves Knowledge Graph node and entity counts from Neo4j.
-    """
+def get_graph_stats():
     try:
         driver = Neo4jConnection.get_driver()
         with driver.session() as session:

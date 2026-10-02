@@ -18,26 +18,22 @@ export default function App() {
   const [isDark, setIsDark] = useState(false);
   const [activeTab, setActiveTab] = useState('ask');
 
-  // System status
   const [neo4jStatus, setNeo4jStatus] = useState('checking');
   const [apiStatus, setApiStatus] = useState('checking');
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Graph and entity data
   const [stats, setStats] = useState(null);
   const [bananaNodes, setBananaNodes] = useState([]);
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
   const [entities, setEntities] = useState({});
   const [dataLoading, setDataLoading] = useState(false);
 
-  // Question & Query pipeline state
   const [question, setQuestion] = useState('Which Samsung products are supplied by TechWorld?');
   const [isLoading, setIsLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [queryResult, setQueryResult] = useState(null);
   const [error, setError] = useState(null);
 
-  // Toggle dark class on root document
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
@@ -46,12 +42,10 @@ export default function App() {
     }
   }, [isDark]);
 
-  // Initial data loading
   const fetchAllData = async () => {
     setIsRefreshing(true);
     setDataLoading(true);
 
-    // 1. Check API health
     try {
       await apiService.getHealth();
       setApiStatus('online');
@@ -59,7 +53,6 @@ export default function App() {
       setApiStatus('offline');
     }
 
-    // 2. Check Neo4j health
     try {
       const n4j = await apiService.getNeo4jHealth();
       setNeo4jStatus(n4j.status === 'connected' ? 'connected' : 'disconnected');
@@ -67,7 +60,6 @@ export default function App() {
       setNeo4jStatus('disconnected');
     }
 
-    // 3. Fetch stats
     try {
       const s = await apiService.getStats();
       setStats(s);
@@ -75,7 +67,6 @@ export default function App() {
       console.error('Failed to load stats', e);
     }
 
-    // 4. Fetch banana nodes
     try {
       const b = await apiService.getBananaNodes();
       setBananaNodes(b);
@@ -83,7 +74,6 @@ export default function App() {
       console.error('Failed to load banana nodes', e);
     }
 
-    // 5. Fetch graph data for visualizer
     try {
       const g = await apiService.getGraphData();
       setGraphData(g);
@@ -91,7 +81,6 @@ export default function App() {
       console.error('Failed to load graph visualization data', e);
     }
 
-    // 6. Fetch all entities
     try {
       const ent = await apiService.getEntities();
       setEntities(ent);
@@ -107,7 +96,6 @@ export default function App() {
     fetchAllData();
   }, []);
 
-  // Handle Question Submission
   const handleAskQuestion = async (customQ) => {
     const qToAsk = customQ || question;
     if (!qToAsk || !qToAsk.trim()) {
@@ -119,7 +107,6 @@ export default function App() {
     setIsLoading(true);
     setLoadingStep(0);
 
-    // Simulate progress stepper transitions for user feedback
     const step1Timer = setTimeout(() => setLoadingStep(1), 350);
     const step2Timer = setTimeout(() => setLoadingStep(2), 700);
     const step3Timer = setTimeout(() => setLoadingStep(3), 1100);
@@ -127,7 +114,6 @@ export default function App() {
     try {
       const res = await apiService.askQuestion(qToAsk.trim());
       setQueryResult(res);
-      // Automatically switch to 'ask' tab to display answer
       setActiveTab('ask');
     } catch (err) {
       console.error('Ask question failed', err);

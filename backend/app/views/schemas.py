@@ -2,12 +2,8 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
 
 
-# ==========================================
-# MVC View: Question Input & Output Views
-# ==========================================
-
 class AskRequestView(BaseModel):
-    question: str = Field(..., min_length=1, description="Natural language question about the knowledge graph")
+    question: str = Field(..., min_length=1)
 
 
 class AskResponseView(BaseModel):
@@ -19,18 +15,10 @@ class AskResponseView(BaseModel):
     result_count: int
 
 
-# ==========================================
-# MVC View: Banana & Verification Views
-# ==========================================
-
 class BananaNodeView(BaseModel):
     id: str
     value: str
 
-
-# ==========================================
-# MVC View: Statistics Views
-# ==========================================
 
 class StatsResponseView(BaseModel):
     products: int
@@ -41,10 +29,6 @@ class StatsResponseView(BaseModel):
     orders: int
     banana: int
 
-
-# ==========================================
-# MVC View: Graph Visualization Presenter Views
-# ==========================================
 
 class GraphNodeView(BaseModel):
     id: str
@@ -64,10 +48,6 @@ class GraphVisualizationView(BaseModel):
     nodes: List[GraphNodeView]
     links: List[GraphLinkView]
 
-
-# ==========================================
-# MVC View: Health Check Views
-# ==========================================
 
 class HealthStatusView(BaseModel):
     status: str

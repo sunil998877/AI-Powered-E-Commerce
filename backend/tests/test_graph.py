@@ -5,7 +5,7 @@ from app.graph.schema import ENTITY_TYPES, RELATIONSHIP_TYPES
 
 def test_neo4j_connection():
     health = Neo4jConnection.check_connection()
-    assert health.get("status") == "connected", f"Neo4j should be connected: {health}"
+    assert health.get("status") == "connected"
 
 
 def test_required_node_labels_exist():
@@ -14,7 +14,7 @@ def test_required_node_labels_exist():
         result = session.run("CALL db.labels()")
         labels = [record[0] for record in result]
         for expected in ENTITY_TYPES:
-            assert expected in labels, f"Expected node label '{expected}' not found in Neo4j. Existing: {labels}"
+            assert expected in labels
 
 
 def test_required_relationships_exist():
@@ -23,7 +23,7 @@ def test_required_relationships_exist():
         result = session.run("CALL db.relationshipTypes()")
         rel_types = [record[0] for record in result]
         for expected in RELATIONSHIP_TYPES:
-            assert expected in rel_types, f"Expected relationship '{expected}' not found. Existing: {rel_types}"
+            assert expected in rel_types
 
 
 def test_dataset_node_counts():
@@ -36,9 +36,9 @@ def test_dataset_node_counts():
         customers = session.run("MATCH (c:Customer) RETURN count(c) AS c").single()["c"]
         orders = session.run("MATCH (o:Order) RETURN count(o) AS c").single()["c"]
 
-        assert brands >= 6, f"Expected at least 6 brands, got {brands}"
-        assert products == 20, f"Expected exactly 20 products, got {products}"
-        assert categories >= 6, f"Expected at least 6 categories, got {categories}"
-        assert vendors >= 6, f"Expected at least 6 vendors, got {vendors}"
-        assert customers >= 15, f"Expected at least 15 customers, got {customers}"
-        assert orders >= 20, f"Expected at least 20 orders, got {orders}"
+        assert brands >= 6
+        assert products == 20
+        assert categories >= 6
+        assert vendors >= 6
+        assert customers >= 15
+        assert orders >= 20

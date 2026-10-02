@@ -7,14 +7,11 @@ from app.models.queries import BANANA_NODES_QUERY
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(tags=["Banana Verification"])
+router = APIRouter(tags=["Banana"])
 
 
 @router.get("/api/banana", response_model=List[BananaNodeView])
-def get_banana_nodes_controller():
-    """
-    MVC Controller: Retrieves the 5 mandatory Keyword nodes with value = 'banana' for verification.
-    """
+def get_banana_nodes():
     try:
         results = GraphRetrieverService.execute_cypher(BANANA_NODES_QUERY)
         return [BananaNodeView(id=r["id"], value=r["value"]) for r in results]
