@@ -1,0 +1,443 @@
+{
+  "brands": [
+    { "id": "B001", "name": "Samsung" },
+    { "id": "B002", "name": "Apple" },
+    { "id": "B003", "name": "Sony" },
+    { "id": "B004", "name": "Dell" },
+    { "id": "B005", "name": "Lenovo" },
+    { "id": "B006", "name": "HP" },
+    { "id": "B007", "name": "Logitech" },
+    { "id": "B008", "name": "Amazon" },
+    { "id": "B009", "name": "Anker" }
+  ],
+  "categories": [
+    { "id": "C001", "name": "Smartphones" },
+    { "id": "C002", "name": "Laptops" },
+    { "id": "C003", "name": "Audio" },
+    { "id": "C004", "name": "Wearables" },
+    { "id": "C005", "name": "Smart Home" },
+    { "id": "C006", "name": "Accessories" },
+    { "id": "C007", "name": "Cameras" },
+    { "id": "C008", "name": "Monitors" },
+    { "id": "C009", "name": "E-readers" },
+    { "id": "C010", "name": "TVs" }
+  ],
+  "vendors": [
+    { "id": "V001", "name": "TechWorld", "location": "Bangalore" },
+    { "id": "V002", "name": "ABC Traders", "location": "Mumbai" },
+    { "id": "V003", "name": "Global Electronics", "location": "Delhi" },
+    { "id": "V004", "name": "Digital Hub", "location": "Hyderabad" },
+    { "id": "V005", "name": "Prime Distributors", "location": "Pune" },
+    { "id": "V006", "name": "SmartTech Supplies", "location": "Chennai" }
+  ],
+  "products": [
+    {
+      "id": "P001",
+      "name": "Galaxy S25",
+      "price": 79999,
+      "stock": 50,
+      "brand_id": "B001",
+      "category_id": "C001",
+      "vendor_id": "V001"
+    },
+    {
+      "id": "P002",
+      "name": "Galaxy S25 Ultra",
+      "price": 129999,
+      "stock": 30,
+      "brand_id": "B001",
+      "category_id": "C001",
+      "vendor_id": "V002"
+    },
+    {
+      "id": "P003",
+      "name": "Galaxy Buds 3",
+      "price": 14999,
+      "stock": 80,
+      "brand_id": "B001",
+      "category_id": "C003",
+      "vendor_id": "V001"
+    },
+    {
+      "id": "P004",
+      "name": "iPhone 17",
+      "price": 89999,
+      "stock": 40,
+      "brand_id": "B002",
+      "category_id": "C001",
+      "vendor_id": "V003"
+    },
+    {
+      "id": "P005",
+      "name": "iPhone 17 Pro",
+      "price": 134999,
+      "stock": 25,
+      "brand_id": "B002",
+      "category_id": "C001",
+      "vendor_id": "V004"
+    },
+    {
+      "id": "P006",
+      "name": "MacBook Air M4",
+      "price": 114999,
+      "stock": 35,
+      "brand_id": "B002",
+      "category_id": "C002",
+      "vendor_id": "V001"
+    },
+    {
+      "id": "P007",
+      "name": "AirPods Pro",
+      "price": 24900,
+      "stock": 60,
+      "brand_id": "B002",
+      "category_id": "C003",
+      "vendor_id": "V003"
+    },
+    {
+      "id": "P008",
+      "name": "Sony WH-1000XM6",
+      "price": 32990,
+      "stock": 45,
+      "brand_id": "B003",
+      "category_id": "C003",
+      "vendor_id": "V001"
+    },
+    {
+      "id": "P009",
+      "name": "Sony Bravia TV",
+      "price": 84990,
+      "stock": 20,
+      "brand_id": "B003",
+      "category_id": "C010",
+      "vendor_id": "V005"
+    },
+    {
+      "id": "P010",
+      "name": "Dell XPS 15",
+      "price": 149990,
+      "stock": 25,
+      "brand_id": "B004",
+      "category_id": "C002",
+      "vendor_id": "V004"
+    },
+    {
+      "id": "P011",
+      "name": "Lenovo ThinkPad X1",
+      "price": 159990,
+      "stock": 20,
+      "brand_id": "B005",
+      "category_id": "C002",
+      "vendor_id": "V002"
+    },
+    {
+      "id": "P012",
+      "name": "HP Spectre x360",
+      "price": 139990,
+      "stock": 18,
+      "brand_id": "B006",
+      "category_id": "C002",
+      "vendor_id": "V006"
+    },
+    {
+      "id": "P013",
+      "name": "Apple Watch Series 11",
+      "price": 45900,
+      "stock": 30,
+      "brand_id": "B002",
+      "category_id": "C004",
+      "vendor_id": "V004"
+    },
+    {
+      "id": "P014",
+      "name": "Galaxy Watch 8",
+      "price": 31999,
+      "stock": 40,
+      "brand_id": "B001",
+      "category_id": "C004",
+      "vendor_id": "V001"
+    },
+    {
+      "id": "P015",
+      "name": "Sony Alpha Camera",
+      "price": 189990,
+      "stock": 15,
+      "brand_id": "B003",
+      "category_id": "C007",
+      "vendor_id": "V005"
+    },
+    {
+      "id": "P016",
+      "name": "Logitech MX Master 3S",
+      "price": 9995,
+      "stock": 70,
+      "brand_id": "B007",
+      "category_id": "C006",
+      "vendor_id": "V001"
+    },
+    {
+      "id": "P017",
+      "name": "Kindle Paperwhite",
+      "price": 14999,
+      "stock": 55,
+      "brand_id": "B008",
+      "category_id": "C009",
+      "vendor_id": "V006"
+    },
+    {
+      "id": "P018",
+      "name": "Echo Dot",
+      "price": 4499,
+      "stock": 90,
+      "brand_id": "B008",
+      "category_id": "C005",
+      "vendor_id": "V002"
+    },
+    {
+      "id": "P019",
+      "name": "Samsung 4K Monitor",
+      "price": 27999,
+      "stock": 35,
+      "brand_id": "B001",
+      "category_id": "C008",
+      "vendor_id": "V003"
+    },
+    {
+      "id": "P020",
+      "name": "Anker Power Bank",
+      "price": 3999,
+      "stock": 100,
+      "brand_id": "B009",
+      "category_id": "C006",
+      "vendor_id": "V005"
+    }
+  ],
+  "customers": [
+    { "id": "CU001", "name": "Rahul Kumar", "email": "rahul.kumar@example.com" },
+    { "id": "CU002", "name": "Amit Sharma", "email": "amit.sharma@example.com" },
+    { "id": "CU003", "name": "Priya Singh", "email": "priya.singh@example.com" },
+    { "id": "CU004", "name": "Neha Verma", "email": "neha.verma@example.com" },
+    { "id": "CU005", "name": "Arjun Mehta", "email": "arjun.mehta@example.com" },
+    { "id": "CU006", "name": "Rohit Gupta", "email": "rohit.gupta@example.com" },
+    { "id": "CU007", "name": "Ananya Singh", "email": "ananya.singh@example.com" },
+    { "id": "CU008", "name": "Vikash Kumar", "email": "vikash.kumar@example.com" },
+    { "id": "CU009", "name": "Pooja Sharma", "email": "pooja.sharma@example.com" },
+    { "id": "CU010", "name": "Karan Patel", "email": "karan.patel@example.com" },
+    { "id": "CU011", "name": "Sneha Reddy", "email": "sneha.reddy@example.com" },
+    { "id": "CU012", "name": "Vikram Malhotra", "email": "vikram.malhotra@example.com" },
+    { "id": "CU013", "name": "Rohan Verma", "email": "rohan.verma@example.com" },
+    { "id": "CU014", "name": "Divya Nair", "email": "divya.nair@example.com" },
+    { "id": "CU015", "name": "Suresh Raina", "email": "suresh.raina@example.com" }
+  ],
+  "orders": [
+    {
+      "id": "ORD001",
+      "order_date": "2026-09-01",
+      "status": "DELIVERED",
+      "total_amount": 109997,
+      "customer_id": "CU001",
+      "items": [
+        { "product_id": "P001", "quantity": 1 },
+        { "product_id": "P003", "quantity": 2 }
+      ]
+    },
+    {
+      "id": "ORD002",
+      "order_date": "2026-09-03",
+      "status": "SHIPPED",
+      "total_amount": 114899,
+      "customer_id": "CU002",
+      "items": [
+        { "product_id": "P004", "quantity": 1 },
+        { "product_id": "P007", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD003",
+      "order_date": "2026-09-05",
+      "status": "DELIVERED",
+      "total_amount": 114999,
+      "customer_id": "CU003",
+      "items": [
+        { "product_id": "P006", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD004",
+      "order_date": "2026-09-08",
+      "status": "PROCESSING",
+      "total_amount": 23997,
+      "customer_id": "CU004",
+      "items": [
+        { "product_id": "P017", "quantity": 1 },
+        { "product_id": "P018", "quantity": 2 }
+      ]
+    },
+    {
+      "id": "ORD005",
+      "order_date": "2026-09-10",
+      "status": "DELIVERED",
+      "total_amount": 32990,
+      "customer_id": "CU005",
+      "items": [
+        { "product_id": "P008", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD006",
+      "order_date": "2026-09-12",
+      "status": "PLACED",
+      "total_amount": 159985,
+      "customer_id": "CU006",
+      "items": [
+        { "product_id": "P010", "quantity": 1 },
+        { "product_id": "P016", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD007",
+      "order_date": "2026-09-14",
+      "status": "DELIVERED",
+      "total_amount": 79999,
+      "customer_id": "CU007",
+      "items": [
+        { "product_id": "P001", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD008",
+      "order_date": "2026-09-16",
+      "status": "SHIPPED",
+      "total_amount": 159990,
+      "customer_id": "CU008",
+      "items": [
+        { "product_id": "P011", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD009",
+      "order_date": "2026-09-18",
+      "status": "DELIVERED",
+      "total_amount": 49899,
+      "customer_id": "CU009",
+      "items": [
+        { "product_id": "P013", "quantity": 1 },
+        { "product_id": "P020", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD010",
+      "order_date": "2026-09-20",
+      "status": "CANCELLED",
+      "total_amount": 129999,
+      "customer_id": "CU010",
+      "items": [
+        { "product_id": "P002", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD011",
+      "order_date": "2026-09-21",
+      "status": "DELIVERED",
+      "total_amount": 134999,
+      "customer_id": "CU011",
+      "items": [
+        { "product_id": "P005", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD012",
+      "order_date": "2026-09-22",
+      "status": "PROCESSING",
+      "total_amount": 139990,
+      "customer_id": "CU012",
+      "items": [
+        { "product_id": "P012", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD013",
+      "order_date": "2026-09-23",
+      "status": "SHIPPED",
+      "total_amount": 84990,
+      "customer_id": "CU013",
+      "items": [
+        { "product_id": "P009", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD014",
+      "order_date": "2026-09-25",
+      "status": "DELIVERED",
+      "total_amount": 46998,
+      "customer_id": "CU014",
+      "items": [
+        { "product_id": "P014", "quantity": 1 },
+        { "product_id": "P003", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD015",
+      "order_date": "2026-09-26",
+      "status": "DELIVERED",
+      "total_amount": 189990,
+      "customer_id": "CU015",
+      "items": [
+        { "product_id": "P015", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD016",
+      "order_date": "2026-09-27",
+      "status": "SHIPPED",
+      "total_amount": 31999,
+      "customer_id": "CU001",
+      "items": [
+        { "product_id": "P014", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD017",
+      "order_date": "2026-09-28",
+      "status": "DELIVERED",
+      "total_amount": 47989,
+      "customer_id": "CU002",
+      "items": [
+        { "product_id": "P019", "quantity": 1 },
+        { "product_id": "P016", "quantity": 2 }
+      ]
+    },
+    {
+      "id": "ORD018",
+      "order_date": "2026-09-29",
+      "status": "PLACED",
+      "total_amount": 87997,
+      "customer_id": "CU003",
+      "items": [
+        { "product_id": "P001", "quantity": 1 },
+        { "product_id": "P020", "quantity": 2 }
+      ]
+    },
+    {
+      "id": "ORD019",
+      "order_date": "2026-09-30",
+      "status": "DELIVERED",
+      "total_amount": 14999,
+      "customer_id": "CU004",
+      "items": [
+        { "product_id": "P003", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "ORD020",
+      "order_date": "2026-10-01",
+      "status": "SHIPPED",
+      "total_amount": 28899,
+      "customer_id": "CU005",
+      "items": [
+        { "product_id": "P007", "quantity": 1 },
+        { "product_id": "P020", "quantity": 1 }
+      ]
+    }
+  ]
+}
